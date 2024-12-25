@@ -36,17 +36,18 @@ class _AuthScreenState extends State<AuthScreen> {
     _form.currentState!.save();
 
     try {
+      final UserCredential userCredential;
       setState(() {
         _isAuthenticating = true;
       });
 
       if (_isLogin) {
-        final userCredetial = await _firebase.signInWithEmailAndPassword(
+        userCredential = await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail,
           password: _enteredPassword,
         );
       } else {
-        final userCredential = await _firebase.createUserWithEmailAndPassword(
+        userCredential = await _firebase.createUserWithEmailAndPassword(
           email: _enteredEmail,
           password: _enteredPassword,
         );
